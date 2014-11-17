@@ -70,7 +70,7 @@ public class PullRefreshListViewActivity extends Activity {
         });
         setLastUpdateTime();
         
-//        mPullListView.doPullRefreshing(true, 500);
+        mPullListView.doPullRefreshing(true, 300);
     }
     
     private class GetDataTask extends AsyncTask<Void, Void, String[]> {

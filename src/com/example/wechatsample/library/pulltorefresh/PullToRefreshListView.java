@@ -176,7 +176,8 @@ public class PullToRefreshListView extends PullToRefreshBase<ListView> implement
     
     @Override
     protected LoadingLayout createHeaderLoadingLayout(Context context, AttributeSet attrs) {
-        return new RotateLoadingLayout(context);
+//        return new RotateLoadingLayout(context); //转圈的
+        return new HeaderLoadingLayout(context); //上下箭头的
     }
     
     /**

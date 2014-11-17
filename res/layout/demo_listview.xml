@@ -3,11 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <com.example.wechatsample.pullrefreshlibrary.PullToRefreshListView
+    <com.example.wechatsample.library.pulltorefresh.PullToRefreshListView
         android:id="@+id/demo_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-    </com.example.wechatsample.pullrefreshlibrary.PullToRefreshListView>
+    </com.example.wechatsample.library.pulltorefresh.PullToRefreshListView>
 
 </FrameLayout>

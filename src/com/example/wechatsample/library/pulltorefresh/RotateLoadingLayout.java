@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 /**
  * 这个类封装了下拉刷新的布局
- * 
+ * 这个是转圈的
  * @author Li Hong
  * @since 2013-7-30
  */
