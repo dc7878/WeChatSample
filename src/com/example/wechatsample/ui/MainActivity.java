@@ -33,7 +33,7 @@ import com.example.wechatsample.R.layout;
 import com.example.wechatsample.R.menu;
 import com.example.wechatsample.R.string;
 import com.example.wechatsample.fragment.MerchantFragment;
-import com.example.wechatsample.fragment.ContactsFragment;
+import com.example.wechatsample.fragment.MainFragment;
 import com.example.wechatsample.fragment.ProductFragment;
 import com.example.wechatsample.fragment.WebFragment;
 import com.example.wechatsample.fragment.MoreOneFragment;
@@ -54,24 +54,24 @@ public class MainActivity extends FragmentActivity {
 	private String[] titles = null;
 
 	/**
-	 * 聊天界面的Fragment
+	 * 店铺界面的Fragment
 	 */
-	private MerchantFragment chatFragment;
+	private MerchantFragment merchantFragment;
 
 	/**
-	 * 发现界面的Fragment
+	 * 商品界面的Fragment
 	 */
-	private ProductFragment foundFragment;
+	private ProductFragment productFragment;
 
 	/**
-	 * 通讯录界面的Fragment
+	 * 主界面的Fragment
 	 */
-	private ContactsFragment contactsFragment;
+	private MainFragment mainFragment;
 	
 	/**
-	 * 我的资料界面的Fragment
+	 * 网页界面的Fragment
 	 */
-	private WebFragment meFragment;
+	private WebFragment webFragment;
 	
 	/**
 	 * 我的资料界面的Fragment
@@ -114,14 +114,14 @@ public class MainActivity extends FragmentActivity {
 		ViewPager pager = (ViewPager) findViewById(R.id.pager);
 		tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
 		
-		chatFragment = MerchantFragment.newInstance();
-		foundFragment = ProductFragment.newInstance();
-		contactsFragment = ContactsFragment.newInstance();
-		meFragment = WebFragment.newInstance();
-		listFragments.add(chatFragment);
-		listFragments.add(foundFragment);
-		listFragments.add(contactsFragment);
-		listFragments.add(meFragment);
+		merchantFragment = MerchantFragment.newInstance();
+		productFragment = ProductFragment.newInstance();
+		mainFragment = MainFragment.newInstance();
+		webFragment = WebFragment.newInstance();
+		listFragments.add(mainFragment);
+		listFragments.add(merchantFragment);
+		listFragments.add(productFragment);
+		listFragments.add(webFragment);
 		
 		pager.setOffscreenPageLimit(listFragments.size()-1);
 		
