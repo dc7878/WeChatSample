@@ -55,6 +55,7 @@ public class MerchantAdapter extends BaseAdapter{
 			viewHolder = new ViewHolder();
 			viewHolder.iv_merchant = (ImageView) convertView.findViewById(R.id.merchant_avatar);
 			viewHolder.tv_merchantName = (TextView) convertView.findViewById(R.id.merchant_name);
+			viewHolder.tv_merchantAddress = (TextView) convertView.findViewById(R.id.merchant_address);
 			
 			convertView.setTag(viewHolder);
 		} else{
@@ -63,6 +64,7 @@ public class MerchantAdapter extends BaseAdapter{
 		
 		MerchantEntity merchantEntity = merList.get(position);
 		viewHolder.tv_merchantName.setText(merchantEntity.name);
+		viewHolder.tv_merchantAddress.setText(merchantEntity.address);
 
 		viewHolder.iv_merchant.setImageBitmap(bmpMerchant);
 		if(!merchantEntity.avatar.isEmpty()){
@@ -75,6 +77,7 @@ public class MerchantAdapter extends BaseAdapter{
 	static class ViewHolder{
 		ImageView iv_merchant = null; //店铺图片
 		TextView tv_merchantName = null; //店铺名
+		TextView tv_merchantAddress = null; //店铺地址
 	}
 	
 }

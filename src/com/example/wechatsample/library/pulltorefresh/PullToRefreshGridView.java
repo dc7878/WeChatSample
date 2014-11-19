@@ -18,7 +18,7 @@ import android.widget.GridView;
  */
 public class PullToRefreshGridView extends PullToRefreshBase<GridView> implements OnScrollListener {
     
-    /**ListView*/
+    /**GridView*/
     private GridView mGridView;
     /**用于滑到底部自动加载的Footer*/
     private LoadingLayout mFooterLayout;

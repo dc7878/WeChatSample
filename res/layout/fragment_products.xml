@@ -1,25 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <LinearLayout 
-        android:id="@+id/found_ll_loading"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
-        <ProgressBar 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-    </LinearLayout>
-    <ListView 
-        android:visibility="gone"
-        android:id="@+id/found_listview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-        
-    </ListView>
-</FrameLayout>
+    
+    <com.example.wechatsample.library.pulltorefresh.PullFramelayoutGridView
+	    android:id="@+id/pull_gridview_framelayout"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    />
+    
+</LinearLayout>

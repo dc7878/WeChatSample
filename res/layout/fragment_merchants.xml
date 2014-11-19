@@ -7,7 +7,7 @@
 	<com.example.wechatsample.library.pulltorefresh.PullFramelayoutListView
 	    android:id="@+id/pull_listview_framelayout"
 	    android:layout_width="match_parent"
-	    android:layout_height="match_parent">
+	    android:layout_height="match_parent"
+	    />
 	    
-	</com.example.wechatsample.library.pulltorefresh.PullFramelayoutListView>   
 </LinearLayout>

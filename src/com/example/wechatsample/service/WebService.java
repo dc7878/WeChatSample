@@ -24,14 +24,34 @@ public class WebService {
 	
 	static final String mImgUrl = mAPIUrl + "/uploads/"; 
 	
+	/** 店铺merchants属性  */
 	static final String MERCHANT_HEAD = "/merchants";
-	static final String MERCHANT_RECORDS = "records";
 	static final String MERCHANT_NAME = "name";
 	static final String MERCHANT_AVATAR = "avatar"; 
-	static final String MERCHANT_STATUS = "status"; //审核状态
 	static final String MERCHANT_ISMULTIPLESHOP = "isMultipleShop"; //是否为总店
-	static final String MERCHANT_LIMIT = "limit"; //每次加载条数
-	static final String MERCHANT_SKIP = "skip"; //当前已加载条数
+	static final String MERCHANT_ADDRESS = "address"; 
+	static final String MERCHANT_DISTRICT = "district"; 
+	static final String MERCHANT_STREET_DETAIL = "street2"; 
+	
+	/** 商品products属性  */
+	static final String PRODUCT_HEAD = "/products";
+	static final String PRODUCT_NAME = "name";
+	static final String PRODUCT_PRICE_NOW = "price";
+	static final String PRODUCT_PRICE_OLD = "market_price";
+	static final String PRODUCT_IMAGES = "images";
+	static final String PRODUCT_LISTED = "listed"; //是否上架
+	
+	
+	/************ 下面是一些公共属性 **************/
+	static final String RECORDS = "records";
+	static final String VERIFY_STATUS = "status"; //审核状态
+	static final String LIMIT = "limit"; //每次加载条数
+	static final String SKIP = "skip"; //当前已加载条数
+	
+	/** 审核状态  */
+	final String VERIFY_SUCC = "succeed_verify"; //审核通过
+	
+	/***************************************/
 	
 	private static class FindWebServiceHolder {
 		private static final WebService mInstance = new WebService();
@@ -43,30 +63,31 @@ public class WebService {
 
 	/**
 	 * 获取商户列表
-	 * 
-	 * @param name
-	 *            商户名称（查询时用）
-	 * @param featured
-	 *            是不是最旺店铺
-	 * @param sortby
-	 * @param limit
-	 *            每次获取多少条
-	 * @param skip
-	 *            已经获取的条数
+	 * @param limit 每次获取多少条
+	 * @param skip 已经获取的条数
 	 * @param handler
 	 */
-
-	public void requestMerchants(int limit, int skip, JsonHttpResponseHandler handler) {
+	public void requestMerchants(int limit, int skip, JsonHttpResponseHandler responseHandler) {
 		RequestParams params = new RequestParams();
-		params.put(MERCHANT_STATUS, "succeed_verify"); //审核通过的
+		params.put(VERIFY_STATUS, VERIFY_SUCC); //审核通过的
 		params.put(MERCHANT_ISMULTIPLESHOP, "true");
-		params.put(MERCHANT_LIMIT, limit+"");
-		params.put(MERCHANT_SKIP, skip+"");
+		params.put(LIMIT, limit+"");
+		params.put(SKIP, skip+"");
 //		params.put("featured", "true");
+		
 		AsyncHttpClient httpClient = new AsyncHttpClient();
-		httpClient.get(mAPIUrl + MERCHANT_HEAD, params, handler);
+		httpClient.get(mAPIUrl + MERCHANT_HEAD, params, responseHandler);
 	}
 	
 	
-
+	public void requestProducts(int limit, int skip, JsonHttpResponseHandler responseHandler){
+		RequestParams params = new RequestParams();
+		params.put(VERIFY_STATUS, VERIFY_SUCC);
+		params.put(PRODUCT_LISTED, "true");
+		params.put(LIMIT, limit+"");
+		params.put(SKIP, skip+"");
+		
+		AsyncHttpClient client = new AsyncHttpClient();
+		client.get(mAPIUrl + PRODUCT_HEAD, params, responseHandler);
+	}
 }

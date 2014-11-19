@@ -102,7 +102,7 @@ public class MerchantFragment extends BaseFragment {
 			@Override
 			public void onClick(View arg0) {
 				mPullFramelayoutListView.startLoading();
-				loadData(true);
+				loadData();
 			}
 		});
 		
@@ -121,7 +121,7 @@ public class MerchantFragment extends BaseFragment {
 
 			@Override
 			public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-				loadData(false);
+				loadData();
 			}
 		});
 	}
@@ -130,12 +130,12 @@ public class MerchantFragment extends BaseFragment {
 	protected void lazyLoad() {
 		if(isVisible && isFirstLoad){
 			//刚开始就刷新
-//			mPullListView.doPullRefreshing(true, 500);
-			loadData(true);
+//			mPullListView.doPullRefreshing(true, 300);
+			loadData();
 		}
 	}
 	
-	private void loadData(final boolean isFirst) {
+	private void loadData() {
 		if(CommonUtil.checkNetState(getActivity())){
 			WebService.getInstance().requestMerchants(mListLimit, merList.size(), new JsonHttpResponseHandler(){
 				@Override
@@ -159,11 +159,11 @@ public class MerchantFragment extends BaseFragment {
 				@Override
 				public void onFailure(Throwable e, JSONObject errorResponse) {
 					Log.d("chatfail", errorResponse.toString());
-					dealLoadDataError(isFirst);
+					dealLoadDataError();
 				}
 			});
 		}else{
-			dealLoadDataError(isFirst);
+			dealLoadDataError();
 		}
 		
 	}
@@ -235,17 +235,17 @@ public class MerchantFragment extends BaseFragment {
 				@Override
 				public void onFailure(Throwable e, JSONObject errorResponse) {
 					Log.d("chatfail", errorResponse.toString());
-					dealLoadDataError(false);
+					dealLoadDataError();
 				}
 			});
 		}else{
-			dealLoadDataError(false);
+			dealLoadDataError();
 		}
 	}
     
     // 处理数据加载失败
-    private void dealLoadDataError(boolean isFirst) {
-    	if(isFirst){
+    private void dealLoadDataError() {
+    	if(isFirstLoad){
     		mPullFramelayoutListView.setErrorWhenLoading();
     	}else{
     		mPullListView.onPullDownRefreshComplete();

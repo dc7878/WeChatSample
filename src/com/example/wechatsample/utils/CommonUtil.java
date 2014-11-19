@@ -2,6 +2,7 @@ package com.example.wechatsample.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 import com.example.wechatsample.MyApplication;
 
@@ -148,5 +149,33 @@ public class CommonUtil
 		
 		return dm.heightPixels;
 	}
+	
+	/**
+	 * dip to px 转化
+	 * @param context
+	 * @param dipValue
+	 * @return
+	 */
+	public static int dip2px(Context context, float dipValue){ 
+        final float scale = context.getResources().getDisplayMetrics().density; 
+        return (int)(dipValue * scale + 0.5f); 
+	} 
+	public static int px2dip(Context context, float pxValue){ 
+        final float scale = context.getResources().getDisplayMetrics().density; 
+	    return (int)(pxValue / scale + 0.5f); 
+	}
+	
+	static DecimalFormat dfPrice=new DecimalFormat("￥0.00");
+	static public String formatPrice(Double price){
+		return dfPrice.format(price);
+	}
+	
+	public static String subZeroAndDot(String s){  
+        if(s.indexOf(".") > 0){  
+            s = s.replaceAll("0+?$", "");//去掉多余的0  
+            s = s.replaceAll("[.]$", "");//如最后一位是.则去掉  
+        }  
+        return s;  
+    }
 
 }
