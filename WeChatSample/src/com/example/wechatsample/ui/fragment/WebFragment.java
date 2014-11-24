@@ -1,4 +1,4 @@
-package com.example.wechatsample.fragment;
+package com.example.wechatsample.ui.fragment;
 
 import com.example.wechatsample.R;
 import com.example.wechatsample.utils.widget.ProgressWebView;

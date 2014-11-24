@@ -3,4 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    <com.example.wechatsample.ui.pulltorefresh.PullFramelayoutScrollView
+	    android:id="@+id/pull_scrollview_framelayout"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    />
+    
 </RelativeLayout>

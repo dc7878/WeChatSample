@@ -15,4 +15,12 @@ public class WebServiceEntity {
 		public Double   priceOld; //原价
 		public String[] imgs; //商品图
 	}
+	
+	public static class ADItem{
+		public String type;
+		public String ad_url;
+		public String ad_id;
+		public String status;
+		public String image;
+	}
 }

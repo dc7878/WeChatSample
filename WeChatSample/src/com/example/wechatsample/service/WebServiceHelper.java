@@ -6,6 +6,7 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.example.wechatsample.service.WebServiceEntity.ADItem;
 import com.example.wechatsample.service.WebServiceEntity.MerchantEntity;
 import com.example.wechatsample.service.WebServiceEntity.ProductEntity;
 import com.example.wechatsample.utils.LogUtils;
@@ -90,6 +91,40 @@ public class WebServiceHelper {
 		}
 		
 		return productEntity;
+	}
+	
+	/** 广告图片  */
+	public static List<ADItem> adsToList(JSONObject response) {
+		List<ADItem> adsList = new ArrayList<ADItem>();
+		JSONArray adsArray = null;
+		JSONObject adsObject = null;
+		ADItem adsItem = null;
+		try {
+			adsArray = response.getJSONArray(WebService.RECORDS);
+			for (int i = 0; i < adsArray.length(); i++) {
+				adsObject = adsArray.getJSONObject(i);
+				adsItem = new ADItem();
+				if (adsObject.has(WebService.AD_ID)) {
+					adsItem.ad_id = adsObject.optString(WebService.AD_ID);
+				}
+				if (adsObject.has(WebService.AD_IMGID)) {
+					adsItem.image = WebService.mImgUrl+ adsObject.optString(WebService.AD_IMGID);
+				}
+				if (adsObject.has(WebService.AD_STATUS)) {
+					adsItem.status = adsObject.optString(WebService.AD_STATUS);
+				}
+				if (adsObject.has(WebService.AD_TYPE)) {
+					adsItem.type = adsObject.optString(WebService.AD_TYPE);
+				}
+				if (adsObject.has(WebService.AD_URL)) {
+					adsItem.ad_url = adsObject.optString(WebService.AD_URL);
+				}
+				adsList.add(adsItem);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return adsList;
 	}
 
 }

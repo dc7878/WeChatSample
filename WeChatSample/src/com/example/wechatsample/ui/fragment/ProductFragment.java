@@ -1,4 +1,4 @@
-package com.example.wechatsample.fragment;
+package com.example.wechatsample.ui.fragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -45,11 +45,8 @@ import android.widget.TextView;
 import android.widget.FrameLayout.LayoutParams;
 
 /**
- * 发现Fragment的界面
- * 
+ * 商品界面
  * http://blog.csdn.net/guolin_blog/article/details/26365683
- * 
- * @author guolin
  */
 public class ProductFragment extends BaseFragment {
 

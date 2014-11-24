@@ -1,22 +1,8 @@
 package com.example.wechatsample.service;
 
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.entity.StringEntity;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.example.wechatsample.library.http.AsyncHttpClient;
 import com.example.wechatsample.library.http.JsonHttpResponseHandler;
 import com.example.wechatsample.library.http.RequestParams;
-
-import android.R.integer;
-import android.content.Context;
-import android.util.Log;
 
 public class WebService {
 	
@@ -40,6 +26,15 @@ public class WebService {
 	static final String PRODUCT_PRICE_OLD = "market_price";
 	static final String PRODUCT_IMAGES = "images";
 	static final String PRODUCT_LISTED = "listed"; //是否上架
+	
+	/** 广告数据  */
+	static final String AD_HEAD = "/ads";
+	static final String AD_DEVICE = "device";
+	static final String AD_STATUS = "status";
+	static final String AD_ID = "_id";
+	static final String AD_IMGID = "image_id";
+	static final String AD_TYPE = "type";
+	static final String AD_URL = "ad_url";
 	
 	
 	/************ 下面是一些公共属性 **************/
@@ -80,7 +75,12 @@ public class WebService {
 		httpClient.get(mAPIUrl + MERCHANT_HEAD, params, responseHandler);
 	}
 	
-	
+	/**
+	 * 获取商品列表
+	 * @param limit 每次获取多少条
+	 * @param skip 已经获取的条数
+	 * @param responseHandler
+	 */
 	public void requestProducts(int limit, int skip, JsonHttpResponseHandler responseHandler){
 		RequestParams params = new RequestParams();
 		params.put(VERIFY_STATUS, VERIFY_SUCC);
@@ -91,5 +91,14 @@ public class WebService {
 		
 		AsyncHttpClient client = new AsyncHttpClient();
 		client.get(mAPIUrl + PRODUCT_HEAD, params, responseHandler);
+	}
+	
+	/** 获取广告数据  */
+	public void requestADs(JsonHttpResponseHandler responseHandler){
+		AsyncHttpClient client = new AsyncHttpClient();
+		RequestParams params = new RequestParams();
+		params.put(AD_DEVICE, "mobile");
+		params.put(AD_STATUS, "succeed_verify");
+		client.get(mAPIUrl + AD_HEAD, params, responseHandler);
 	}
 }

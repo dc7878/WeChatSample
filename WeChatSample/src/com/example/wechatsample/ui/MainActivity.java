@@ -32,14 +32,14 @@ import com.example.wechatsample.R.id;
 import com.example.wechatsample.R.layout;
 import com.example.wechatsample.R.menu;
 import com.example.wechatsample.R.string;
-import com.example.wechatsample.fragment.MerchantFragment;
-import com.example.wechatsample.fragment.MainFragment;
-import com.example.wechatsample.fragment.ProductFragment;
-import com.example.wechatsample.fragment.WebFragment;
-import com.example.wechatsample.fragment.MoreOneFragment;
-import com.example.wechatsample.fragment.MoreTwoFragment;
-import com.example.wechatsample.fragment.SettingFragment;
 import com.example.wechatsample.ui.demo.PullRefreshDemoActivity;
+import com.example.wechatsample.ui.fragment.MainFragment;
+import com.example.wechatsample.ui.fragment.MerchantFragment;
+import com.example.wechatsample.ui.fragment.MoreOneFragment;
+import com.example.wechatsample.ui.fragment.MoreTwoFragment;
+import com.example.wechatsample.ui.fragment.ProductFragment;
+import com.example.wechatsample.ui.fragment.SettingFragment;
+import com.example.wechatsample.ui.fragment.WebFragment;
 import com.example.wechatsample.utils.widget.PagerSlidingTabStrip;
 
 /**

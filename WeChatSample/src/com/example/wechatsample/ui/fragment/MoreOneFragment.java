@@ -1,4 +1,4 @@
-package com.example.wechatsample.fragment;
+package com.example.wechatsample.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -19,7 +19,7 @@ import android.widget.FrameLayout.LayoutParams;
  * 
  * @author guolin
  */
-public class SettingFragment extends Fragment {
+public class MoreOneFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class SettingFragment extends Fragment {
 		v.setLayoutParams(params);
 		v.setLayoutParams(params);
 		v.setGravity(Gravity.CENTER);
-		v.setText("设置界面");
+		v.setText("更多1界面");
 		v.setTextSize((int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 12, dm));
 		fl.addView(v);
 		return fl;
