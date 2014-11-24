@@ -1,2 +1,6 @@
-gen
-bin
+WeChatSample/gen
+WeChatSample/bin
+WeChatSample/.classpath
+MyPullToRefreshLibrary/gen
+MyPullToRefreshLibrary/bin
+MyPullToRefreshLibrary/.classpath
