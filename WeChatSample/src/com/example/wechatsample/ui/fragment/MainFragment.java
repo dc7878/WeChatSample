@@ -110,14 +110,19 @@ public class MainFragment extends BaseFragment {
 		mPullScrollView.setOnRefreshListener(new OnRefreshListener<ScrollView>() {
 
 			@Override
-			public void onPullDownToRefresh(
-					PullToRefreshBase<ScrollView> refreshView) {
+			public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
 //				downLoadData();
+				for(int i=0;i<i+1;i++){
+					if(i>2000){
+						mPullScrollView.onPullDownRefreshComplete();
+						i=0;
+						break;
+					}
+				}
 			}
 
 			@Override
-			public void onPullUpToRefresh(
-					PullToRefreshBase<ScrollView> refreshView) {
+			public void onPullUpToRefresh(PullToRefreshBase<ScrollView> refreshView) {
 				
 			}
 		});
