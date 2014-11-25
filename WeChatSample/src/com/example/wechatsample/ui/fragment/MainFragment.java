@@ -182,7 +182,7 @@ public class MainFragment extends BaseFragment {
 			advPics.add(img);
 		}
 		
-		mViewPager.setADsViewPager(getActivity(), advPics, dotLayout, 1800);
+		mViewPager.setADsViewPager(getActivity(), advPics, dotLayout, 2000);
 		
 	};
 	
