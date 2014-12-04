@@ -26,6 +26,14 @@
         </LinearLayout>
     </RelativeLayout>
 
+    <TextView 
+        android:id="@+id/fragment_main_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:textSize="16sp"
+        android:textColor="#F34A3F"/>
+    
     <ImageView 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -8,6 +8,10 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationListener;
+import com.amap.api.location.LocationManagerProxy;
+import com.amap.api.location.LocationProviderProxy;
 import com.example.wechatsample.R;
 import com.example.wechatsample.adapter.MerchantAdapter;
 import com.example.wechatsample.library.cache.ImageADsLoader;
@@ -18,15 +22,19 @@ import com.example.wechatsample.service.WebService;
 import com.example.wechatsample.service.WebServiceEntity.ADItem;
 import com.example.wechatsample.service.WebServiceHelper;
 import com.example.wechatsample.ui.pulltorefresh.PullFramelayoutScrollView;
+import com.example.wechatsample.utils.LocationUtil;
+import com.example.wechatsample.utils.LogUtils;
 import com.example.wechatsample.utils.widget.MyADsViewPage;
 import com.fackquan.mypulltorefreshlibrary.PullToRefreshBase;
 import com.fackquan.mypulltorefreshlibrary.PullToRefreshBase.OnRefreshListener;
 import com.fackquan.mypulltorefreshlibrary.PullToRefreshScrollView;
 
+import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
@@ -34,6 +42,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ImageView.ScaleType;
 
@@ -53,6 +62,7 @@ public class MainFragment extends BaseFragment {
 	
 	private MyADsViewPage mViewPager = null; //广告图片
 	private LinearLayout dotLayout = null; //小圆点
+	private TextView tv_addr = null; //定位
 	
 	private int mListLimit = 10; //每次加载条数
 	private int lastListSize = 0;
@@ -77,6 +87,7 @@ public class MainFragment extends BaseFragment {
 		
 		initView(view);
 		initListeners();
+		LocationUtil.getMyLocation(getActivity(), tv_addr);
 		
 		//界面加载完加载数据
 		isFirstLoad = true;
@@ -94,6 +105,12 @@ public class MainFragment extends BaseFragment {
 		
 		scrollView = mPullScrollView.getRefreshableView();
 		scrollView.setVerticalScrollBarEnabled(false);
+		
+		View scroll = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_main_scroll, null);
+		scrollView.addView(scroll);
+		mViewPager = (MyADsViewPage) scroll.findViewById(R.id.adv_pager);
+		dotLayout = (LinearLayout) scroll.findViewById(R.id.viewGroup);
+		tv_addr = (TextView) scroll.findViewById(R.id.fragment_main_location);
 		
 		imgLoader = new ImageADsLoader(getActivity());
 	}
@@ -140,6 +157,7 @@ public class MainFragment extends BaseFragment {
 		WebService.getInstance().requestADs(new JsonHttpResponseHandler(){
 			@Override
 			public void onSuccess(int statusCode, JSONObject response) {
+				LogUtils.d("ads", response.toString());
 				mPullFramelayoutScrollView.stopLoading();
 				
 				List<ADItem> succAds = WebServiceHelper.adsToList(response);
@@ -159,11 +177,6 @@ public class MainFragment extends BaseFragment {
 	}
 	
 	private void setData() {
-		View scroll = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_main_scroll, null);
-		scrollView.addView(scroll);
-		mViewPager = (MyADsViewPage) scroll.findViewById(R.id.adv_pager);
-		dotLayout = (LinearLayout) scroll.findViewById(R.id.viewGroup);
-		
 		List<View> advPics = new ArrayList<View>();
 		for(int j=0;j<listADs.size();j++){
 			ImageView img = new ImageView(getActivity());
@@ -215,6 +228,8 @@ public class MainFragment extends BaseFragment {
     	if(null != mViewPager){
     		mViewPager.setContinue(false);
     	}
+    	
+    	LocationUtil.stopLocation();
     }
     
     @Override

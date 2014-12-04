@@ -40,6 +40,7 @@ import com.example.wechatsample.ui.fragment.MoreTwoFragment;
 import com.example.wechatsample.ui.fragment.ProductFragment;
 import com.example.wechatsample.ui.fragment.SettingFragment;
 import com.example.wechatsample.ui.fragment.WebFragment;
+import com.example.wechatsample.utils.ToastUtil;
 import com.example.wechatsample.utils.widget.PagerSlidingTabStrip;
 
 /**
@@ -286,6 +287,19 @@ public class MainActivity extends FragmentActivity {
 			menuKeyField.setBoolean(config, false);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	
+	/** 再按一次退出  */
+	private long mLastExitTime;
+
+	@Override
+	public void onBackPressed() {
+		if (System.currentTimeMillis() - mLastExitTime < 2000) {
+			super.onBackPressed();
+		} else {
+			mLastExitTime = System.currentTimeMillis();
+			ToastUtil.showNormalToast(this, "再按一次退出");
 		}
 	}
 
