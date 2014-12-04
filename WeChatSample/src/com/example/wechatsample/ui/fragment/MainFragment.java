@@ -128,14 +128,11 @@ public class MainFragment extends BaseFragment {
 
 			@Override
 			public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
-//				downLoadData();
-				for(int i=0;i<i+1;i++){
-					if(i>2000){
-						mPullScrollView.onPullDownRefreshComplete();
-						i=0;
-						break;
-					}
+				if(listADs.size() <= 0){
+					downLoadData();
 				}
+				LocationUtil.getMyLocation(getActivity(), tv_addr);
+				setToNormalState();
 			}
 
 			@Override
@@ -207,6 +204,8 @@ public class MainFragment extends BaseFragment {
 	}
 	
 	private void setToNormalState() {
+		mPullScrollView.onPullDownRefreshComplete();
+		mPullScrollView.onPullUpRefreshComplete();
         setLastUpdateTime();
 	}
 	
